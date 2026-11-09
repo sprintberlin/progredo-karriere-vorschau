@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karriere bei PROGREDO AG – Vorschau Website-Einbindung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.6; }
+    header { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 1.25rem 2rem; position: sticky; top: 0; z-index: 10; }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #0f172a; letter-spacing: -0.02em; }
+    .logo span { color: #0284c7; }
+    .nav a { margin-left: 1.5rem; text-decoration: none; color: #64748b; font-size: 0.95rem; font-weight: 500; }
+    .nav a.active { color: #0284c7; }
+    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 4rem 2rem; text-align: center; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.03em; }
+    .hero p { font-size: 1.15rem; color: #94a3b8; max-width: 600px; margin: 0 auto; }
+    .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
+    .info-banner { background: #e0f2fe; border: 1px solid #bae6fd; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.9rem; color: #0369a1; }
+    .filter-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .filter-btn { background: #fff; border: 1px solid #cbd5e1; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; cursor: pointer; color: #475569; }
+    .filter-btn.active { background: #0284c7; color: #fff; border-color: #0284c7; }
+    .jobs-grid { display: grid; gap: 1.25rem; }
+    .job-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1.75rem; transition: transform 0.15s, box-shadow 0.15s; }
+    .job-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.06); }
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
+    .job-title { font-size: 1.25rem; font-weight: 600; color: #0f172a; }
+    .badge { background: #f1f5f9; color: #475569; padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 500; }
+    .badge.hybrid { background: #dcfce7; color: #15803d; }
+    .job-meta { display: flex; gap: 1.25rem; font-size: 0.875rem; color: #64748b; margin-bottom: 1rem; }
+    .job-meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .job-desc { font-size: 0.95rem; color: #475569; margin-bottom: 1.25rem; line-height: 1.6; }
+    .job-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .btn { background: #0284c7; color: #fff; border: none; padding: 0.65rem 1.25rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn:hover { background: #0369a1; }
+    .btn-secondary { background: #f8fafc; color: #475569; border: 1px solid #cbd5e1; }
+    .btn-secondary:hover { background: #f1f5f9; }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(2px); z-index: 50; align-items: center; justify-content: center; padding: 1rem; }
+    .modal.open { display: flex; }
+    .modal-content { background: #fff; width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; border-radius: 12px; padding: 2rem; position: relative; }
+    .close-btn { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #94a3b8; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; color: #334155; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+    .tech-note { margin-top: 3rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; font-size: 0.85rem; color: #64748b; }
+    .tech-note code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; color: #0f172a; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">PROGREDO <span>AG</span></div>
+      <nav class="nav">
+        <a href="#">Unternehmen</a>
+        <a href="#">Dienstleistungen</a>
+        <a href="#" class="active">Karriere</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Werde Teil unseres Teams</h1>
+    <p>Gestalte mit uns die Zukunft der Schweizer Nachfolge- und Vermögensberatung.</p>
+  </section>
+
+  <div class="container">
+    <div class="info-banner">
+      <span>🚀 <strong>Live-Vorschau:</strong> Direkte Einbindung der offenen Stellen aus Zoho Recruit in das WordPress-Design.</span>
+      <span style="font-size: 0.8rem; background: #fff; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid #bae6fd;">Org 944960534</span>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active">Alle Stellen (2)</button>
+      <button class="filter-btn">Marketing & Sales (1)</button>
+      <button class="filter-btn">Vermögensverwaltung (1)</button>
+      <button class="filter-btn">Zürich (2)</button>
+    </div>
+
+    <div class="jobs-grid">
+      <!-- Job 1 -->
+      <article class="job-card">
+        <div class="job-header">
+          <div>
+            <h2 class="job-title">Outbound Marketing / Leadsler / Pre-Setter (m/w) 80-100%</h2>
+            <div class="job-meta" style="margin-top: 0.35rem;">
+              <span>📍 Zürich (hybrid)</span>
+              <span>💼 Vollzeit / Teilzeit</span>
+              <span>💰 54'000 CHF / Jahr (Fix + Bonus)</span>
+            </div>
+          </div>
+          <span class="badge hybrid">Hybrid</span>
+        </div>
+        <div class="job-desc">
+          PROGREDO AG, führend im Bereich Nachfolge- und Firmenübergabe für Schweizer KMUs, sucht Verstärkung im Outbound B2B. Telefonische Akquise von Unternehmern, Versand informativer Unterlagen und Erstkontakt auf Augenhöhe.
+        </div>
+        <div class="job-actions">
+          <button class="btn" onclick="openApplyModal('882571000000610001', 'Outbound Marketing / Leadsler / Pre-Setter (m/w) 80-100%')">Jetzt bewerben</button>
+          <button class="btn btn-secondary" onclick="toggleDetails('job1')">Details ansehen</button>
+        </div>
+        <div id="job1-details" style="display:none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f1f5f9; font-size: 0.9rem; color: #475569;">
+          <h4 style="margin-bottom: 0.5rem; color: #0f172a;">Ihre Aufgaben:</h4>
+          <ul style="padding-left: 1.25rem; margin-bottom: 0.75rem;">
+            <li>Telefonische Erstansprache von Schweizer KMU-Inhabern</li>
+            <li>Versand zielgerichteter Unterlagen zur Unternehmensnachfolge</li>
+            <li>Qualifizierung von Interessenten und Übergabe an die Nachfolgeberater</li>
+          </ul>
+          <h4 style="margin-bottom: 0.5rem; color: #0f172a;">Ihr Profil:</h4>
+          <ul style="padding-left: 1.25rem; margin-bottom: 0.75rem;">
+            <li>Abgeschlossene Berufslehre + mind. 2 Jahre Praxis im Telefonverkauf / Outbound</li>
+            <li>Schweizerdeutsch als Muttersprache zwingend erforderlich</li>
+            <li>Freude am Telefonieren und gewinnende Telefonstimme</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Job 2 -->
+      <article class="job-card">
+        <div class="job-header">
+          <div>
+            <h2 class="job-title">Kundenberater in der Vermögensverwaltung mit eigenem Kundenbuch</h2>
+            <div class="job-meta" style="margin-top: 0.35rem;">
+              <span>📍 Zürich (hybrid)</span>
+              <span>💼 Vollzeit 100%</span>
+              <span>💰 80'000 – 200'000 CHF / Jahr</span>
+            </div>
+          </div>
+          <span class="badge hybrid">Hybrid</span>
+        </div>
+        <div class="job-desc">
+          Ganzheitliche Betreuung vermögender Privatkunden und Unternehmer in Vermögensstrukturierung und Nachfolgeplanung. Weiterführung Ihres bestehenden Portfolios auf unserer unabhängigen, FINMA-regulierten Plattform.
+        </div>
+        <div class="job-actions">
+          <button class="btn" onclick="openApplyModal('882571000000611001', 'Kundenberater in der Vermögensverwaltung mit eigenem Kundenbuch')">Jetzt bewerben</button>
+          <button class="btn btn-secondary" onclick="toggleDetails('job2')">Details ansehen</button>
+        </div>
+        <div id="job2-details" style="display:none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f1f5f9; font-size: 0.9rem; color: #475569;">
+          <h4 style="margin-bottom: 0.5rem; color: #0f172a;">Ihre Aufgaben:</h4>
+          <ul style="padding-left: 1.25rem; margin-bottom: 0.75rem;">
+            <li>Übernahme und kontinuierliche Betreuung vermögender Kunden</li>
+            <li>Erarbeitung individueller Anlage- und Nachfolgestrategien</li>
+            <li>Ausbau des Portfolios über Empfehlungen und PROGREDO-Netzwerk</li>
+          </ul>
+          <h4 style="margin-bottom: 0.5rem; color: #0f172a;">Ihr Profil:</h4>
+          <ul style="padding-left: 1.25rem; margin-bottom: 0.75rem;">
+            <li>Mehrjährige Erfahrung als Kundenberater (Bank, EAM, Family Office)</li>
+            <li>Bestehendes Kundenbuch mit realistischem Transferpotenzial</li>
+            <li>Fundierte Finanz-Ausbildung (IAF, Finanzplaner m. eidg. FA, CFA o.ä.)</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="tech-note">
+      <h3 style="color: #0f172a; margin-bottom: 0.5rem; font-size: 0.95rem;">💡 Technische Integrations-Optionen für WordPress:</h3>
+      <p style="margin-bottom: 0.5rem;">
+        <strong>Option A (Native WordPress-Einbindung):</strong> Ein kurzes JavaScript/REST-Widget holt die Jobs live aus Zoho Recruit und rendert sie direkt im CSS-Theme der Progredo-Website (kein iFrame-Scrollbalken, perfekt mobil).
+      </p>
+      <p>
+        <strong>Option B (Zoho Standard Career Site):</strong> Verlinkung oder CNAME-Mapping auf <code>jobs.progredo.ch</code>. Führt Bewerber jedoch auf ein separates Zoho-Layout.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bewerbungs-Modal -->
+  <div id="applyModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeApplyModal()">&times;</button>
+      <h2 style="font-size: 1.35rem; margin-bottom: 0.25rem; color: #0f172a;">Bewerbung einreichen</h2>
+      <p id="modalJobTitle" style="color: #0284c7; font-weight: 500; font-size: 0.95rem; margin-bottom: 1.25rem;"></p>
+      <form onsubmit="handleApply(event)">
+        <input type="hidden" id="modalJobId" value="">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label>Vorname *</label>
+            <input type="text" required placeholder="Hans">
+          </div>
+          <div class="form-group">
+            <label>Nachname *</label>
+            <input type="text" required placeholder="Muster">
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label>E-Mail-Adresse *</label>
+            <input type="email" required placeholder="hans.muster@bluewin.ch">
+          </div>
+          <div class="form-group">
+            <label>Telefonnummer *</label>
+            <input type="tel" required placeholder="+41 79 123 45 67">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Aktueller Wohnort *</label>
+          <input type="text" required placeholder="Zürich / Umgebung">
+        </div>
+        <div class="form-group">
+          <label>Lebenslauf / CV (PDF) *</label>
+          <input type="file" required accept=".pdf,.doc,.docx">
+        </div>
+        <div class="form-group">
+          <label>Nachricht / Bemerkung</label>
+          <textarea rows="3" placeholder="Kurze Nachricht an das PROGREDO-Team..."></textarea>
+        </div>
+        <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeApplyModal()">Abbrechen</button>
+          <button type="submit" class="btn">Bewerbung absenden</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleDetails(id) {
+      const el = document.getElementById(id + '-details');
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+    function openApplyModal(jobId, jobTitle) {
+      document.getElementById('modalJobId').value = jobId;
+      document.getElementById('modalJobTitle').innerText = jobTitle;
+      document.getElementById('applyModal').classList.add('open');
+    }
+    function closeApplyModal() {
+      document.getElementById('applyModal').classList.remove('open');
+    }
+    function handleApply(e) {
+      e.preventDefault();
+      alert('Demo-Modus: In der Live-Einbindung wird dieser Aufruf direkt an die Zoho Recruit API übergeben und der Kandidat landet in der Pipeline.');
+      closeApplyModal();
+    }
+  </script>
+</body>
+</html>
